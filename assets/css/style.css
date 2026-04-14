@@ -1130,7 +1130,7 @@ section {
   padding: 22px;
 }
 
-@media (max-width: 560px) {
+@media (max-width: 900px) {
   h1,
   .section-head h2 {
     white-space: normal;
