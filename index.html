@@ -1,0 +1,1612 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Patrice Lauret · Portfolio</title>
+  <meta name="description" content="Consultant en informatique, formateur IA, architecte de systèmes de connaissance. Portfolio GitHub Pages de Patrice Lauret." />
+  <meta name="theme-color" content="#0b1020" />
+  <meta property="og:title" content="Patrice Lauret · Portfolio" />
+  <meta property="og:description" content="IA, Notion, structuration des connaissances, pédagogie, interfaces utiles et transformation numérique." />
+  <meta property="og:type" content="website" />
+  <style>
+    :root {
+      --bg: #07111f;
+      --bg-soft: rgba(10, 18, 34, 0.72);
+      --panel: rgba(255, 255, 255, 0.07);
+      --panel-2: rgba(255, 255, 255, 0.1);
+      --line: rgba(255, 255, 255, 0.12);
+      --text: #edf4ff;
+      --muted: #b7c5de;
+      --soft: #93a3c4;
+      --accent: #8fe3cf;
+      --accent-2: #f4b6d8;
+      --accent-3: #b8c8ff;
+      --accent-4: #f7dca6;
+      --success: #a7f3d0;
+      --shadow: 0 20px 80px rgba(0, 0, 0, 0.35);
+      --radius: 28px;
+      --radius-sm: 18px;
+      --max: 1220px;
+      --nav-h: 78px;
+      --grid: rgba(255,255,255,0.05);
+      --card-glow: radial-gradient(circle at top left, rgba(255,255,255,0.22), transparent 30%), radial-gradient(circle at bottom right, rgba(143,227,207,0.18), transparent 35%);
+      --hero-glow: radial-gradient(circle at 20% 20%, rgba(143, 227, 207, 0.24), transparent 28%), radial-gradient(circle at 80% 10%, rgba(244, 182, 216, 0.2), transparent 30%), radial-gradient(circle at 50% 100%, rgba(184, 200, 255, 0.22), transparent 35%);
+      --hero-reflection: linear-gradient(115deg, transparent 20%, rgba(255,255,255,0.16) 40%, rgba(255,255,255,0.03) 52%, transparent 65%);
+      --border-shine: linear-gradient(135deg, rgba(255,255,255,0.28), rgba(255,255,255,0.05) 32%, rgba(255,255,255,0.02) 65%, rgba(255,255,255,0.18));
+      --spring-spectrum: linear-gradient(130deg, rgba(143,227,207,0.17), rgba(184,200,255,0.12), rgba(244,182,216,0.12), rgba(247,220,166,0.14));
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(56, 189, 248, 0.08), transparent 22%),
+        radial-gradient(circle at 90% 10%, rgba(244, 182, 216, 0.08), transparent 20%),
+        radial-gradient(circle at 10% 80%, rgba(143, 227, 207, 0.09), transparent 25%),
+        linear-gradient(180deg, #06101d 0%, #081426 26%, #0a1630 56%, #07101f 100%);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -2;
+    }
+
+    body::before {
+      background:
+        linear-gradient(var(--grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: radial-gradient(circle at center, black 28%, transparent 85%);
+      opacity: 0.26;
+    }
+
+    body::after {
+      background:
+        radial-gradient(circle at 15% 15%, rgba(143,227,207,0.18), transparent 18%),
+        radial-gradient(circle at 85% 20%, rgba(244,182,216,0.16), transparent 20%),
+        radial-gradient(circle at 70% 78%, rgba(184,200,255,0.18), transparent 24%),
+        radial-gradient(circle at 20% 85%, rgba(247,220,166,0.12), transparent 20%);
+      filter: blur(60px);
+      opacity: 0.9;
+      animation: drift 18s ease-in-out infinite alternate;
+    }
+
+    @keyframes drift {
+      from { transform: translate3d(0, 0, 0) scale(1); }
+      to { transform: translate3d(2%, -2%, 0) scale(1.05); }
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .cursor-light {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      background: radial-gradient(320px circle at var(--mx, 50%) var(--my, 30%), rgba(255,255,255,0.07), transparent 45%);
+      transition: background 120ms linear;
+    }
+
+    .wrap {
+      width: min(100% - 32px, var(--max));
+      margin-inline: auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      padding-top: 14px;
+    }
+
+    .nav-shell {
+      width: min(100% - 24px, calc(var(--max) + 10px));
+      margin: 0 auto;
+      min-height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 14px 18px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.05));
+      backdrop-filter: blur(18px) saturate(140%);
+      -webkit-backdrop-filter: blur(18px) saturate(140%);
+      box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,0.18);
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .nav-shell::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(110deg, transparent 0%, rgba(255,255,255,0.12) 25%, transparent 45%);
+      transform: translateX(-100%);
+      opacity: 0.55;
+      animation: shimmer 10s ease-in-out infinite;
+      z-index: -1;
+    }
+
+    @keyframes shimmer {
+      0%, 74%, 100% { transform: translateX(-115%); }
+      82% { transform: translateX(115%); }
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      position: relative;
+      background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.06));
+      border: 1px solid rgba(255,255,255,0.14);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), 0 10px 30px rgba(0,0,0,0.2);
+      overflow: hidden;
+    }
+
+    .brand-mark::before,
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      inset: auto;
+    }
+
+    .brand-mark::before {
+      width: 28px;
+      height: 28px;
+      background: linear-gradient(135deg, rgba(143,227,207,0.9), rgba(184,200,255,0.65));
+      top: -6px;
+      left: -3px;
+      filter: blur(1px);
+    }
+
+    .brand-mark::after {
+      width: 18px;
+      height: 18px;
+      background: linear-gradient(135deg, rgba(244,182,216,0.95), rgba(247,220,166,0.75));
+      right: 5px;
+      bottom: 4px;
+      box-shadow: 0 0 18px rgba(244,182,216,0.5);
+    }
+
+    .brand-text {
+      min-width: 0;
+    }
+
+    .brand-text strong,
+    .brand-text span {
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-text strong {
+      font-size: 0.98rem;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-text span {
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-links a {
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 0.92rem;
+      color: var(--muted);
+      border: 1px solid transparent;
+      transition: 180ms ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--text);
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.12);
+      transform: translateY(-1px);
+    }
+
+    main {
+      padding-bottom: 72px;
+    }
+
+    .hero {
+      min-height: auto;
+      display: grid;
+      align-items: start;
+      padding: 28px 0 18px;
+      position: relative;
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.95fr;
+      gap: 26px;
+      align-items: start;
+    }
+
+    .intro-main {
+      display: grid;
+      gap: 18px;
+      align-content: start;
+    }
+
+    .glass-card,
+    .panel,
+    .timeline-item,
+    .project-card,
+    .skill-block,
+    .stat-card,
+    .philosophy-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.11), rgba(255,255,255,0.05)),
+        var(--spring-spectrum);
+      backdrop-filter: blur(18px) saturate(135%);
+      -webkit-backdrop-filter: blur(18px) saturate(135%);
+      box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,0.16);
+    }
+
+    .glass-card::before,
+    .panel::before,
+    .timeline-item::before,
+    .project-card::before,
+    .skill-block::before,
+    .stat-card::before,
+    .philosophy-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--card-glow);
+      pointer-events: none;
+    }
+
+    .glass-card::after,
+    .panel::after,
+    .timeline-item::after,
+    .project-card::after,
+    .skill-block::after,
+    .stat-card::after,
+    .philosophy-card::after {
+      content: "";
+      position: absolute;
+      inset: 1px;
+      border-radius: inherit;
+      padding: 1px;
+      background: var(--border-shine);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      opacity: 0.8;
+    }
+
+    .hero-card {
+      padding: 36px;
+      min-height: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 26px;
+      isolation: isolate;
+      background:
+        var(--hero-reflection),
+        linear-gradient(180deg, rgba(255,255,255,0.13), rgba(255,255,255,0.05)),
+        var(--hero-glow),
+        linear-gradient(180deg, rgba(8, 20, 38, 0.74), rgba(7, 14, 30, 0.9));
+    }
+
+    .hero-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-card .halo {
+      position: absolute;
+      inset: auto;
+      border-radius: 999px;
+      filter: blur(12px);
+      opacity: 0.7;
+      z-index: 0;
+    }
+
+    .hero-card .halo.one {
+      width: 190px;
+      height: 190px;
+      right: -40px;
+      top: -40px;
+      background: rgba(244,182,216,0.22);
+    }
+
+    .hero-card .halo.two {
+      width: 240px;
+      height: 240px;
+      left: -60px;
+      bottom: -80px;
+      background: rgba(143,227,207,0.18);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.06);
+      color: var(--muted);
+      font-size: 0.9rem;
+      width: fit-content;
+      backdrop-filter: blur(10px);
+      margin-bottom: 20px;
+    }
+
+    .eyebrow .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 18px rgba(143,227,207,0.6);
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin: 0;
+    }
+
+    h1 {
+      font-size: clamp(2.8rem, 7vw, 5.7rem);
+      line-height: 0.98;
+      letter-spacing: -0.05em;
+      max-width: 12ch;
+      text-wrap: balance;
+    }
+
+    .title-gradient {
+      background: linear-gradient(135deg, #ffffff 10%, #d6e3ff 35%, #b8ffed 68%, #ffe8fa 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      filter: drop-shadow(0 6px 28px rgba(255,255,255,0.08));
+    }
+
+    .hero-lead {
+      max-width: 70ch;
+      margin-top: 22px;
+      font-size: clamp(1.05rem, 1.4vw, 1.18rem);
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    .hero-lead strong {
+      color: var(--text);
+      font-weight: 650;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    .btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      font-weight: 600;
+      transition: transform 180ms ease, background 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.14);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,0.24);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.18), 0 10px 24px rgba(0,0,0,0.18);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, rgba(143,227,207,0.24), rgba(184,200,255,0.22), rgba(244,182,216,0.18));
+    }
+
+    .hero-meta {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 0;
+    }
+
+    .stat-card {
+      padding: 18px;
+      border-radius: 22px;
+      min-height: 120px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transform-style: preserve-3d;
+    }
+
+    .stat-kicker {
+      color: var(--soft);
+      font-size: 0.88rem;
+    }
+
+    .stat-value {
+      font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+      max-width: 14ch;
+    }
+
+    .hero-side {
+      display: grid;
+      grid-template-rows: auto auto;
+      gap: 18px;
+      align-content: start;
+    }
+
+    .intro-about {
+      padding: 28px;
+      display: grid;
+      gap: 22px;
+    }
+
+    .intro-about .section-head {
+      margin-bottom: 0;
+    }
+
+    .intro-about .section-head h2 {
+      max-width: 14ch;
+    }
+
+    .profile-panel {
+      padding: 22px;
+      display: grid;
+      gap: 16px;
+      align-content: start;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.05)),
+        radial-gradient(circle at top right, rgba(255,255,255,0.15), transparent 30%),
+        linear-gradient(180deg, rgba(11, 23, 40, 0.85), rgba(8, 16, 32, 0.86));
+    }
+
+    .profile-top {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(220px, 300px);
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .profile-copy {
+      display: grid;
+      gap: 10px;
+      align-content: start;
+    }
+
+    .portrait-shell {
+      position: relative;
+      margin: 0;
+      min-height: 100%;
+      display: flex;
+      align-items: stretch;
+    }
+
+    .portrait-backdrop {
+      position: absolute;
+      inset: 8% 10% 2% 10%;
+      border-radius: 30px;
+      background:
+        radial-gradient(circle at 50% 20%, rgba(255,255,255,0.2), transparent 32%),
+        radial-gradient(circle at 20% 80%, rgba(143,227,207,0.18), transparent 30%),
+        radial-gradient(circle at 85% 25%, rgba(244,182,216,0.18), transparent 30%),
+        linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+      filter: blur(10px);
+      opacity: 0.95;
+      pointer-events: none;
+    }
+
+    .portrait-frame {
+      position: relative;
+      width: 100%;
+      min-height: 360px;
+      border-radius: 28px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.14), rgba(255,255,255,0.05)),
+        linear-gradient(135deg, rgba(143,227,207,0.12), rgba(184,200,255,0.08), rgba(244,182,216,0.1));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.18), 0 18px 34px rgba(0,0,0,0.22);
+      overflow: hidden;
+      isolation: isolate;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    .portrait-frame::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(118deg, transparent 24%, rgba(255,255,255,0.18) 42%, rgba(255,255,255,0.05) 52%, transparent 68%);
+      transform: translateX(-90%);
+      opacity: 0.8;
+      animation: portraitShine 9s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .portrait-frame img {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      max-height: none;
+      object-fit: cover;
+      object-position: center 18%;
+      filter: drop-shadow(0 18px 40px rgba(0,0,0,0.28));
+    }
+
+    @keyframes portraitShine {
+      0%, 76%, 100% { transform: translateX(-92%); }
+      86% { transform: translateX(115%); }
+    }
+
+    
+
+    .profile-panel h2 {
+      font-size: 1.25rem;
+      letter-spacing: -0.03em;
+    }
+
+    .profile-panel p {
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 0.98rem;
+    }
+
+    .chip-row,
+    .stack-cloud,
+    .tag-cloud {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .chip,
+    .tag {
+      padding: 9px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.05);
+      color: var(--text);
+      font-size: 0.88rem;
+      backdrop-filter: blur(8px);
+    }
+
+    .chip.muted,
+    .tag.muted {
+      color: var(--muted);
+    }
+
+    .panel-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .micro-card {
+      padding: 16px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      min-height: 112px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .micro-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(145deg, rgba(255,255,255,0.08), transparent 45%);
+      pointer-events: none;
+    }
+
+    .micro-card strong {
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+
+    .micro-card span {
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 0.92rem;
+    }
+
+    section {
+      padding: 58px 0 0;
+      scroll-margin-top: calc(var(--nav-h) + 22px);
+    }
+
+    .section-head {
+      margin-bottom: 22px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .section-head .label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+      color: var(--accent);
+      font-size: 0.86rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .section-head .label::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent));
+    }
+
+    .section-head h2 {
+      font-size: clamp(1.85rem, 3vw, 3rem);
+      letter-spacing: -0.05em;
+      max-width: 16ch;
+      text-wrap: balance;
+    }
+
+    .section-head p {
+      max-width: 70ch;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .about-grid,
+    .skills-grid,
+    .projects-grid,
+    .philosophy-grid,
+    .stack-grid,
+    .interest-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .about-grid {
+      grid-template-columns: 1.12fr 0.88fr;
+    }
+
+    .panel {
+      padding: 26px;
+    }
+
+    .prose {
+      display: grid;
+      gap: 16px;
+    }
+
+    .prose p {
+      color: var(--muted);
+      line-height: 1.78;
+      font-size: 1rem;
+    }
+
+    .prose strong {
+      color: var(--text);
+    }
+
+    .list-clean {
+      display: grid;
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .list-clean li {
+      display: grid;
+      grid-template-columns: 20px 1fr;
+      gap: 12px;
+      align-items: start;
+      color: var(--muted);
+      line-height: 1.62;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .list-clean li:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .bullet {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      margin-top: 0.48rem;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 22px rgba(143,227,207,0.42);
+    }
+
+    .timeline {
+      display: grid;
+      gap: 14px;
+    }
+
+    .timeline-item {
+      padding: 20px;
+      border-radius: 24px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .timeline-item .kicker {
+      color: var(--soft);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .timeline-item h3 {
+      font-size: 1.12rem;
+      letter-spacing: -0.03em;
+    }
+
+    .timeline-item p {
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 0.97rem;
+    }
+
+    .skills-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .skill-block {
+      padding: 24px;
+      min-height: 100%;
+      display: grid;
+      gap: 16px;
+    }
+
+    .skill-block h3 {
+      font-size: 1.2rem;
+      letter-spacing: -0.03em;
+    }
+
+    .skill-block p {
+      color: var(--muted);
+      line-height: 1.68;
+    }
+
+    .skill-list {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .skill-list li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .skill-list li::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      flex: none;
+      border-radius: 50%;
+      margin-top: 0.45rem;
+      background: linear-gradient(135deg, var(--accent-2), var(--accent));
+      box-shadow: 0 0 16px rgba(244,182,216,0.45);
+    }
+
+    .stack-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .stack-box {
+      padding: 24px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,0.1);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.1), rgba(255,255,255,0.04)),
+        rgba(255,255,255,0.02);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.14);
+    }
+
+    .stack-box h3 {
+      font-size: 1.1rem;
+      margin-bottom: 14px;
+      letter-spacing: -0.02em;
+    }
+
+    .stack-box p {
+      color: var(--muted);
+      line-height: 1.65;
+      margin-top: 10px;
+    }
+
+    .projects-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .project-card {
+      padding: 22px;
+      display: grid;
+      gap: 14px;
+      min-height: 100%;
+    }
+
+    .project-card .project-type {
+      display: inline-flex;
+      width: fit-content;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--soft);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .project-card h3 {
+      font-size: 1.16rem;
+      letter-spacing: -0.03em;
+    }
+
+    .project-card p {
+      color: var(--muted);
+      line-height: 1.66;
+      font-size: 0.96rem;
+    }
+
+    .project-footer {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: auto;
+    }
+
+    .interest-grid {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+
+    .interest-item {
+      padding: 16px 14px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.045);
+      color: var(--text);
+      min-height: 100%;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.12);
+      transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
+    }
+
+    .interest-item:hover {
+      transform: translateY(-3px);
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(255,255,255,0.16);
+    }
+
+    .interest-item strong {
+      display: block;
+      font-size: 0.98rem;
+      margin-bottom: 6px;
+    }
+
+    .interest-item span {
+      color: var(--muted);
+      line-height: 1.5;
+      font-size: 0.9rem;
+    }
+
+    .philosophy-grid {
+      grid-template-columns: 1.1fr 0.9fr;
+    }
+
+    .philosophy-card {
+      padding: 28px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .quote {
+      font-size: clamp(1.3rem, 2.6vw, 2rem);
+      line-height: 1.35;
+      letter-spacing: -0.04em;
+      max-width: 20ch;
+    }
+
+    .quote strong {
+      color: var(--text);
+    }
+
+    .footer-card {
+      margin-top: 28px;
+      padding: 24px;
+      border-radius: 26px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.15);
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .footer-card p {
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 60ch;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px) scale(0.985);
+      transition: opacity 600ms ease, transform 600ms ease;
+      transition-delay: var(--delay, 0ms);
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .tilt {
+      transform-style: preserve-3d;
+      will-change: transform;
+      transition: transform 180ms ease;
+    }
+
+    .floating-reflection {
+      position: absolute;
+      inset: -30% auto auto -25%;
+      width: 60%;
+      height: 120%;
+      transform: rotate(18deg);
+      background: linear-gradient(115deg, transparent 20%, rgba(255,255,255,0.18) 45%, rgba(255,255,255,0.05) 56%, transparent 70%);
+      mix-blend-mode: screen;
+      opacity: 0.55;
+      pointer-events: none;
+      animation: sweep 10s ease-in-out infinite;
+    }
+
+    @keyframes sweep {
+      0%, 78%, 100% { transform: translateX(-35%) rotate(18deg); }
+      88% { transform: translateX(135%) rotate(18deg); }
+    }
+
+    .anchor-offset {
+      position: relative;
+      top: calc(var(--nav-h) * -1);
+      visibility: hidden;
+    }
+
+    @media (max-width: 1100px) {
+      .intro-grid,
+      .about-grid,
+      .philosophy-grid,
+      .stack-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .projects-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .interest-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 820px) {
+      .profile-top {
+        grid-template-columns: 1fr;
+      }
+
+      .portrait-shell {
+        max-width: 420px;
+      }
+
+      .nav-shell {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        width: 100%;
+        justify-content: flex-start;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 18px;
+      }
+
+      .hero-card,
+      .panel,
+      .skill-block,
+      .project-card,
+      .profile-panel,
+      .philosophy-card {
+        padding: 22px;
+      }
+
+      .hero-meta,
+      .panel-grid,
+      .skills-grid,
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .interest-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+      .wrap {
+        width: min(100% - 20px, var(--max));
+      }
+
+      .nav-shell {
+        width: min(100% - 12px, calc(var(--max) + 10px));
+        border-radius: 22px;
+        padding: 12px;
+      }
+
+      .nav-links a {
+        padding: 8px 12px;
+        font-size: 0.88rem;
+      }
+
+      .interest-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-row,
+      .footer-card {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+      }
+
+      .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="cursor-light" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="nav-shell">
+      <a class="brand" href="#top" aria-label="Retour en haut">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-text">
+          <strong>Patrice Lauret</strong>
+          <span>Consultant en informatique · Formateur IA</span>
+        </span>
+      </a>
+      <nav class="nav-links" aria-label="Navigation principale">
+        <a href="#apropos">À propos</a>
+        <a href="#expertises">Expertises</a>
+        <a href="#stack">Stack</a>
+        <a href="#travaux">Travaux</a>
+        <a href="#philosophie">Philosophie</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero wrap">
+      <div class="intro-grid">
+        <div class="intro-main">
+          <article class="glass-card hero-card tilt reveal">
+            <span class="halo one" aria-hidden="true"></span>
+            <span class="halo two" aria-hidden="true"></span>
+            <span class="floating-reflection" aria-hidden="true"></span>
+
+            <div>
+              <div class="eyebrow">
+                <span class="dot" aria-hidden="true"></span>
+                <span>Portfolio évolutif · GitHub Pages · Design statique premium</span>
+              </div>
+              <h1>
+                <span class="title-gradient">Patrice Lauret</span>
+              </h1>
+              <p class="hero-lead">
+                <strong>Consultant en informatique · Formateur IA · Architecte de systèmes de connaissance</strong><br />
+                Je conçois des dispositifs numériques clairs, robustes et actionnables. Mon terrain de jeu: <strong>l’intelligence artificielle, Notion, la structuration de l’information, la pédagogie et les interfaces utiles</strong>.
+              </p>
+              <div class="cta-row">
+                <a class="btn btn-primary" href="#travaux">Voir les axes de travail</a>
+                <a class="btn" href="#philosophie">Lire la philosophie</a>
+              </div>
+            </div>
+
+            <div class="hero-meta">
+              <div class="stat-card tilt">
+                <span class="stat-kicker">Cap</span>
+                <strong class="stat-value">Rendre le complexe clair, utile et durable</strong>
+              </div>
+              <div class="stat-card tilt">
+                <span class="stat-kicker">Approche</span>
+                <strong class="stat-value">Je pilote, l’IA assiste</strong>
+              </div>
+              <div class="stat-card tilt">
+                <span class="stat-kicker">Contexte</span>
+                <strong class="stat-value">Souveraineté, sécurité, adoption</strong>
+              </div>
+            </div>
+          </article>
+
+          <article id="apropos" class="panel intro-about reveal" style="--delay: 120ms;">
+            <div class="section-head">
+              <span class="label">À propos</span>
+              <h2>Un profil qui cherche moins le brillant que le juste</h2>
+              <p>Ma pratique se situe là où se croisent la structuration, l’explication, l’outillage et le sens de l’usage. J’interviens sur des sujets où il faut concilier clarté, rigueur, sécurité, souveraineté numérique et adoption.</p>
+            </div>
+            <div class="about-grid">
+              <div class="prose">
+                <p>Je travaille à l’intersection de <strong>la technique, de la pédagogie et de la stratégie</strong>. Mon objectif est simple: transformer des sujets complexes en <strong>outils, systèmes et contenus compréhensibles, utilisables et durables</strong>.</p>
+                <p>J’interviens notamment sur la <strong>formation à l’IA</strong>, la <strong>structuration de connaissances</strong>, la <strong>conception de systèmes Notion</strong>, la <strong>vulgarisation technique</strong>, la <strong>création de supports pédagogiques</strong> et la mise en valeur de contenus via des <strong>landing pages</strong>, interfaces et présentations.</p>
+                <p>J’ai une appétence forte pour les environnements où il faut concilier <strong>clarté</strong>, <strong>rigueur</strong>, <strong>souveraineté numérique</strong>, <strong>sécurité</strong> et <strong>adoption par des publics non techniques</strong>.</p>
+              </div>
+              <ul class="list-clean">
+                <li><span class="bullet"></span><span><strong>Ce que je cherche</strong><br />Des systèmes utiles, réutilisables, documentés et compréhensibles.</span></li>
+                <li><span class="bullet"></span><span><strong>Ce que j’évite</strong><br />La complexité décorative, les interfaces flatteuses mais opaques, les méthodes qui n’aboutissent à rien.</span></li>
+                <li><span class="bullet"></span><span><strong>Ce que j’assume</strong><br />Sur la partie code, je m’appuie sur l’IA pour accélérer le prototypage, explorer plusieurs pistes, corriger et améliorer.</span></li>
+                <li><span class="bullet"></span><span><strong>Ma valeur</strong><br />Le cadrage, la relecture critique, la cohérence, la lisibilité, l’UX et l’alignement avec le besoin utilisateur.</span></li>
+              </ul>
+            </div>
+          </article>
+        </div>
+
+        <aside class="hero-side">
+          <article class="panel profile-panel tilt reveal" style="--delay: 90ms;">
+            <div class="profile-top">
+              <div class="profile-copy">
+                <h2>À l’intersection de la technique, de la pédagogie et de la stratégie</h2>
+                <p>Je transforme des sujets complexes en outils, systèmes et contenus compréhensibles, utilisables et durables.</p>
+              </div>
+              <figure class="portrait-shell">
+                <span class="portrait-backdrop" aria-hidden="true"></span>
+                <div class="portrait-frame">
+                  <img src="data:image/webp;base64,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" alt="Portrait de Patrice Lauret" loading="eager" decoding="async" />
+                </div>
+              </figure>
+            </div>
+
+            <div class="chip-row">
+              <span class="chip">IA générative</span>
+              <span class="chip">Notion</span>
+              <span class="chip">Knowledge management</span>
+              <span class="chip">UX pédagogique</span>
+            </div>
+
+            <div class="panel-grid">
+              <div class="micro-card">
+                <strong>Clarté</strong>
+                <span>Des structures simples, des sorties concrètes, des méthodes explicites.</span>
+              </div>
+              <div class="micro-card">
+                <strong>Rigueur</strong>
+                <span>Vérification de cohérence, lisibilité, sécurité et alignement au besoin réel.</span>
+              </div>
+              <div class="micro-card">
+                <strong>Pédagogie</strong>
+                <span>Formation, vulgarisation technique, supports actionnables et adoption par des publics non techniques.</span>
+              </div>
+              <div class="micro-card">
+                <strong>Utilité</strong>
+                <span>Interfaces, workflows et contenus pensés pour réduire la friction plutôt que l’habiller.</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="panel reveal" style="--delay: 160ms; padding: 22px;">
+            <div class="section-head" style="margin-bottom:16px;">
+              <span class="label">Focus</span>
+              <h2 style="font-size:1.5rem; max-width:none;">Axes de valeur</h2>
+            </div>
+            <div class="timeline">
+              <div class="timeline-item tilt">
+                <span class="kicker">Formation IA</span>
+                <h3>Ingénierie de prompt, sensibilisation, cadrage des usages</h3>
+                <p>Concevoir des formations qui rendent l’IA compréhensible, concrète et responsable.</p>
+              </div>
+              <div class="timeline-item tilt">
+                <span class="kicker">Systèmes de connaissance</span>
+                <h3>Structurer l’information, les workflows et les espaces documentaires</h3>
+                <p>Transformer des ensembles dispersés en systèmes lisibles, maintenables et réutilisables.</p>
+              </div>
+              <div class="timeline-item tilt">
+                <span class="kicker">Interfaces utiles</span>
+                <h3>Landing pages, démonstrateurs, supports pédagogiques</h3>
+                <p>Donner une forme claire à des contenus techniques, institutionnels ou pédagogiques.</p>
+              </div>
+            </div>
+          </article>
+        </aside>
+      </div>
+    </section>
+
+    <section id="expertises" class="wrap reveal">
+      <div class="section-head">
+        <span class="label">Expertises</span>
+        <h2>Ce que je fais, sans poudre aux yeux</h2>
+        <p>Le but n’est pas d’empiler des mots-clés comme un CV généré à la chaîne. Le but est de montrer des champs d’action cohérents, reliés par une même exigence de clarté et d’utilité.</p>
+      </div>
+
+      <div class="skills-grid">
+        <article class="skill-block tilt">
+          <h3>Intelligence artificielle</h3>
+          <p>Former, structurer, cadrer et sécuriser les usages. L’enjeu n’est pas seulement d’utiliser un outil, mais de concevoir des pratiques durables et compréhensibles.</p>
+          <ul class="skill-list">
+            <li>Formation et sensibilisation à l’IA</li>
+            <li>Ingénierie de prompt</li>
+            <li>Cadrage des usages et workflows assistés par IA</li>
+            <li>Analyse des limites, risques et garde-fous</li>
+          </ul>
+        </article>
+
+        <article class="skill-block tilt">
+          <h3>Notion et systèmes d’organisation</h3>
+          <p>Concevoir des espaces de travail qui ne s’écroulent pas au premier usage réel. La structure doit rester simple, évolutive et transmissible.</p>
+          <ul class="skill-list">
+            <li>Conception d’espaces de travail structurés</li>
+            <li>Architecture de bases de données</li>
+            <li>Systèmes de capture, pilotage et référence</li>
+            <li>Documentation et pédagogie autour des usages avancés</li>
+          </ul>
+        </article>
+
+        <article class="skill-block tilt">
+          <h3>Contenus et interfaces</h3>
+          <p>Créer des pages, démonstrateurs et supports qui rendent les idées lisibles. Une bonne interface aide à comprendre avant même d’expliquer.</p>
+          <ul class="skill-list">
+            <li>Landing pages éditoriales</li>
+            <li>Supports pédagogiques</li>
+            <li>Pages HTML, CSS, Tailwind et JavaScript</li>
+            <li>Documents structurés pour la décision, la formation ou la communication</li>
+          </ul>
+        </article>
+
+        <article class="skill-block tilt">
+          <h3>Conseil et facilitation</h3>
+          <p>Remettre de l’ordre dans le flou, construire des cadres d’analyse et accompagner la montée en compétence sans noyer les gens dans du jargon.</p>
+          <ul class="skill-list">
+            <li>Aide à la clarification des besoins</li>
+            <li>Mise en ordre d’idées complexes</li>
+            <li>Conception de méthodes et cadres d’analyse</li>
+            <li>Accompagnement à la montée en compétence</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="stack" class="wrap reveal">
+      <div class="section-head">
+        <span class="label">Stack et outils</span>
+        <h2>Un outillage pragmatique, orienté usage</h2>
+        <p>Je privilégie les outils qui aident réellement à produire, transmettre, structurer et itérer. Le prestige technologique est une maladie très humaine, et rarement la plus utile.</p>
+      </div>
+
+      <div class="stack-grid">
+        <article class="panel tilt">
+          <div class="stack-box">
+            <h3>Organisation / knowledge management</h3>
+            <div class="stack-cloud">
+              <span class="chip">Notion</span>
+              <span class="chip">Markdown</span>
+              <span class="chip">Bases documentaires</span>
+              <span class="chip">Structuration de l’information</span>
+            </div>
+            <p>Construire des espaces de travail, de référence et de transmission qui restent lisibles dans la durée.</p>
+          </div>
+        </article>
+
+        <article class="panel tilt">
+          <div class="stack-box">
+            <h3>IA / automatisation</h3>
+            <div class="stack-cloud">
+              <span class="chip">ChatGPT</span>
+              <span class="chip">LLM</span>
+              <span class="chip">Prompting avancé</span>
+              <span class="chip">RAG</span>
+              <span class="chip">API</span>
+              <span class="chip">Connecteurs</span>
+            </div>
+            <p>Explorer les usages rédactionnels, analytiques et techniques en gardant une vigilance sur la cohérence, la sécurité et la qualité finale.</p>
+          </div>
+        </article>
+
+        <article class="panel tilt">
+          <div class="stack-box">
+            <h3>Front / prototypage</h3>
+            <div class="stack-cloud">
+              <span class="chip">HTML</span>
+              <span class="chip">CSS</span>
+              <span class="chip">Tailwind CSS</span>
+              <span class="chip">JavaScript</span>
+              <span class="chip">React</span>
+              <span class="chip">GitHub Pages</span>
+              <span class="chip">Vercel</span>
+            </div>
+            <p>Produire des démonstrateurs rapides, des interfaces utiles et des pages éditoriales propres, robustes et faciles à déployer.</p>
+          </div>
+        </article>
+
+        <article class="panel tilt">
+          <div class="stack-box">
+            <h3>Écosystème et outillage</h3>
+            <div class="stack-cloud">
+              <span class="chip">Git / GitHub</span>
+              <span class="chip">VS Code</span>
+              <span class="chip">No-code</span>
+              <span class="chip">Low-code</span>
+              <span class="chip">Systèmes collaboratifs</span>
+            </div>
+            <p>Un environnement qui sert la production, la maintenance et l’itération plutôt que l’effet d’annonce.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="wrap reveal">
+      <div class="section-head">
+        <span class="label">Centres d’intérêt</span>
+        <h2>Les domaines que j’explore en profondeur</h2>
+        <p>Des sujets reliés par une même obsession: mieux organiser, mieux transmettre, mieux décider.</p>
+      </div>
+
+      <div class="interest-grid">
+        <article class="interest-item"><strong>IA générative</strong><span>Usages réels, pratiques pédagogiques, structuration et limites.</span></article>
+        <article class="interest-item"><strong>Prompt engineering</strong><span>Méthodes, cadres, clarté des consignes et efficacité du résultat.</span></article>
+        <article class="interest-item"><strong>Notion</strong><span>Systèmes de travail, bases de données, architecture de l’information.</span></article>
+        <article class="interest-item"><strong>Knowledge management</strong><span>Structuration documentaire, circulation des savoirs, réutilisabilité.</span></article>
+        <article class="interest-item"><strong>RAG documentaire</strong><span>Organisation des corpus, indexation, interrogation utile.</span></article>
+        <article class="interest-item"><strong>UX pédagogique</strong><span>Interfaces qui aident à comprendre et à apprendre.</span></article>
+        <article class="interest-item"><strong>Souveraineté numérique</strong><span>Choix d’outils, maîtrise des données, cohérence du cadre d’usage.</span></article>
+        <article class="interest-item"><strong>Sécurité des usages</strong><span>Garde-fous, vigilance, lisibilité des risques et des limites.</span></article>
+        <article class="interest-item"><strong>Secteur public</strong><span>Transformation numérique utile, pédagogie et adoption.</span></article>
+        <article class="interest-item"><strong>Méthodes d’analyse</strong><span>Structurer la pensée, clarifier les besoins, rendre l’action plus nette.</span></article>
+      </div>
+    </section>
+
+    <section id="travaux" class="wrap reveal">
+      <div class="section-head">
+        <span class="label">Ce que l’on trouvera ici</span>
+        <h2>Un portfolio évolutif, pas une vitrine figée</h2>
+        <p>Ce dépôt GitHub regroupe progressivement des prototypes, des pages de démonstration, des supports pédagogiques, des expérimentations IA, des structures de contenu et des modèles réutilisables.</p>
+      </div>
+
+      <div class="projects-grid">
+        <article class="project-card tilt">
+          <span class="project-type">Prototype</span>
+          <h3>Démonstrateurs et pages d’interface</h3>
+          <p>Pages HTML, interfaces de présentation, vitrines éditoriales, démonstrateurs d’usage et explorations de rendu.</p>
+          <div class="project-footer">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JavaScript</span>
+          </div>
+        </article>
+
+        <article class="project-card tilt">
+          <span class="project-type">Pédagogie</span>
+          <h3>Supports de formation et contenus structurés</h3>
+          <p>Guides, supports de formation, documents de cadrage, présentations et contenus conçus pour clarifier des sujets complexes.</p>
+          <div class="project-footer">
+            <span class="tag">IA</span>
+            <span class="tag">Prompting</span>
+            <span class="tag">Vulgarisation</span>
+          </div>
+        </article>
+
+        <article class="project-card tilt">
+          <span class="project-type">Système</span>
+          <h3>Structures de connaissances et workflows</h3>
+          <p>Organisation documentaire, modèles réutilisables, méthodes d’analyse et systèmes conçus pour durer au-delà de l’effet de nouveauté.</p>
+          <div class="project-footer">
+            <span class="tag">Notion</span>
+            <span class="tag">KM</span>
+            <span class="tag">Méthodes</span>
+          </div>
+        </article>
+      </div>
+
+      <div class="footer-card">
+        <p>Certains travaux publics sont volontairement simplifiés ou anonymisés lorsque les contextes d’origine sont sensibles, institutionnels ou internes. C’est moins spectaculaire, mais plus sérieux. Rare luxe.</p>
+        <a class="btn btn-primary" href="#top">Revenir en haut</a>
+      </div>
+    </section>
+
+    <section id="philosophie" class="wrap reveal">
+      <div class="section-head">
+        <span class="label">Philosophie</span>
+        <h2>La technologie n’a d’intérêt que si elle aide à mieux agir</h2>
+        <p>Je crois aux outils qui rendent les idées plus nettes, les décisions plus solides et les usages plus sereins. La technologie n’a d’intérêt que lorsqu’elle aide à mieux comprendre, mieux transmettre et mieux agir.</p>
+      </div>
+
+      <div class="philosophy-grid">
+        <article class="philosophy-card tilt">
+          <p class="quote">Je privilégie les <strong>structures simples</strong>, les <strong>systèmes réutilisables</strong>, les <strong>sorties concrètes</strong>, les <strong>méthodes explicites</strong> et une approche où la technologie sert un <strong>usage réel</strong>.</p>
+          <div class="tag-cloud">
+            <span class="tag">Clarté</span>
+            <span class="tag">Rigueur</span>
+            <span class="tag">Pédagogie</span>
+            <span class="tag">Utilité</span>
+            <span class="tag">Sécurité</span>
+            <span class="tag">Souveraineté</span>
+          </div>
+        </article>
+
+        <article class="philosophy-card tilt">
+          <div class="prose">
+            <p>Sur la partie code, j’adopte une approche pragmatique: <strong>je pilote, l’IA assiste</strong>. Je m’en sers pour générer des bases, accélérer les itérations, corriger, refactorer, produire des prototypes rapides et comparer plusieurs approches techniques.</p>
+            <p>Je conserve une vigilance forte sur la <strong>lisibilité</strong>, la <strong>cohérence fonctionnelle</strong>, la <strong>sécurité</strong>, l’<strong>UX</strong> et l’adaptation au besoin réel.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const root = document.documentElement;
+    const cursorLight = document.querySelector('.cursor-light');
+
+    window.addEventListener('pointermove', (event) => {
+      const x = (event.clientX / window.innerWidth) * 100;
+      const y = (event.clientY / window.innerHeight) * 100;
+      root.style.setProperty('--mx', `${x}%`);
+      root.style.setProperty('--my', `${y}%`);
+      if (cursorLight) {
+        cursorLight.style.opacity = '1';
+      }
+    }, { passive: true });
+
+    const revealItems = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.16,
+      rootMargin: '0px 0px -10% 0px'
+    });
+
+    revealItems.forEach((item, index) => {
+      item.style.setProperty('--delay', `${Math.min(index * 70, 240)}ms`);
+      revealObserver.observe(item);
+    });
+
+    const tiltItems = document.querySelectorAll('.tilt');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!prefersReducedMotion) {
+      tiltItems.forEach((card) => {
+        card.addEventListener('pointermove', (event) => {
+          const rect = card.getBoundingClientRect();
+          const px = (event.clientX - rect.left) / rect.width;
+          const py = (event.clientY - rect.top) / rect.height;
+          const rotateY = (px - 0.5) * 10;
+          const rotateX = (0.5 - py) * 10;
+          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-2px)`;
+        });
+
+        card.addEventListener('pointerleave', () => {
+          card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
+        });
+      });
+    }
+
+    const navLinks = document.querySelectorAll('.nav-links a');
+    const sections = [...navLinks].map((link) => document.querySelector(link.getAttribute('href'))).filter(Boolean);
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const id = `#${entry.target.id}`;
+        const link = document.querySelector(`.nav-links a[href="${id}"]`);
+        if (!link) return;
+        if (entry.isIntersecting) {
+          navLinks.forEach((item) => item.classList.remove('active'));
+          link.classList.add('active');
+        }
+      });
+    }, {
+      threshold: 0.45,
+      rootMargin: '-20% 0px -30% 0px'
+    });
+
+    sections.forEach((section) => sectionObserver.observe(section));
+  </script>
+</body>
+</html>
