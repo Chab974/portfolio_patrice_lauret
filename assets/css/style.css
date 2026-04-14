@@ -146,8 +146,9 @@ h1 {
   font-size: clamp(2.8rem, 7vw, 5.7rem);
   line-height: 0.98;
   letter-spacing: -0.05em;
-  max-width: 12ch;
-  text-wrap: balance;
+  max-width: none;
+  white-space: nowrap;
+  text-wrap: nowrap;
 }
 
 .cursor-light {
@@ -560,7 +561,7 @@ main {
 }
 
 .intro-about .section-head h2 {
-  max-width: 14ch;
+  max-width: none;
 }
 
 .profile-panel {
@@ -1127,4 +1128,12 @@ section {
 
 .panel-compact {
   padding: 22px;
+}
+
+@media (max-width: 900px) {
+  h1,
+  .section-head h2 {
+    white-space: normal;
+    text-wrap: balance;
+  }
 }
