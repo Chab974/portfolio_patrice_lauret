@@ -761,8 +761,9 @@ section {
 .section-head h2 {
   font-size: clamp(1.85rem, 3vw, 3rem);
   letter-spacing: -0.05em;
-  max-width: 16ch;
-  text-wrap: balance;
+  max-width: none;
+  white-space: nowrap;
+  text-wrap: normal;
 }
 
 .section-head p {
