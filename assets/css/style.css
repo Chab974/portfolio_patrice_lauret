@@ -1178,7 +1178,7 @@ section {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   :root {
     --mobile-nav-rail-w: 56px;
     --mobile-nav-rail-gap: 10px;
@@ -1198,11 +1198,12 @@ section {
   }
 
   .nav-shell {
-    width: fit-content;
-    min-height: auto;
-    padding: 12px 14px;
-    margin-left: 10px;
-    margin-right: calc(var(--mobile-nav-rail-w) + var(--mobile-nav-rail-gap) + 14px);
+    width: auto;
+    min-height: 0;
+    padding: 8px 10px;
+    margin-left: 8px;
+    margin-right: calc(var(--mobile-nav-rail-w) + var(--mobile-nav-rail-gap) + 12px);
+    border-radius: 16px;
     pointer-events: auto;
   }
 
@@ -1218,6 +1219,21 @@ section {
     gap: 8px;
     z-index: 35;
     pointer-events: auto;
+  }
+
+  .brand {
+    gap: 8px;
+  }
+
+  .brand-mark {
+    width: 34px;
+    height: 34px;
+    border-radius: 11px;
+  }
+
+  .brand-text strong {
+    font-size: 0.9rem;
+    line-height: 1.1;
   }
 
   .nav-links a {
