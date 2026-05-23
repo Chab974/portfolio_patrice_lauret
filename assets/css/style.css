@@ -1126,15 +1126,23 @@ section {
 }
 
 .quote {
-  font-size: clamp(1.3rem, 2.6vw, 2rem);
-  line-height: 1.35;
-  letter-spacing: -0.04em;
-  max-width: 29ch;
-  text-wrap: balance;
+  font-size: clamp(1.22rem, 2.28vw, 1.88rem);
+  line-height: 1.32;
+  letter-spacing: 0;
+  max-width: none;
+  text-wrap: pretty;
 }
 
 .quote strong {
   color: var(--text);
+}
+
+.philosophy-card .quote,
+.philosophy-card .prose p {
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+  overflow-wrap: normal;
 }
 
 .footer-card {
