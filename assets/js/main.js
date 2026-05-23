@@ -10,6 +10,16 @@ document.addEventListener("DOMContentLoaded", () => {
     .map((link) => document.querySelector(link.getAttribute("href")))
     .filter(Boolean);
 
+  const getAnchorTarget = (hash) => {
+    if (!hash || hash === "#" || !hash.startsWith("#")) return null;
+
+    try {
+      return document.getElementById(decodeURIComponent(hash.slice(1)));
+    } catch {
+      return null;
+    }
+  };
+
   const syncNavHeight = () => {
     if (!navShell) return;
 
@@ -22,8 +32,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const getAnchorOffset = () => {
     const navHeight = navShell ? navShell.getBoundingClientRect().height : 0;
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
-    return Math.ceil(navHeight + (isMobile ? 24 : 18));
+    const isMobile = window.matchMedia("(max-width: 900px)").matches;
+
+    if (isMobile) {
+      const fixedNavBottom = Math.max(
+        navShell ? navShell.getBoundingClientRect().bottom : 0,
+        navLinks.length > 0 ? navLinks[0].parentElement.getBoundingClientRect().bottom : 0
+      );
+
+      return Math.ceil(fixedNavBottom + 16);
+    }
+
+    return Math.ceil(navHeight + 18);
   };
 
   const scrollToAnchorTarget = (target, behavior = getScrollBehavior()) => {
@@ -57,9 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
   hashLinks.forEach((link) => {
     link.addEventListener("click", (event) => {
       const hash = link.getAttribute("href");
-      if (!hash || hash === "#") return;
-
-      const target = document.querySelector(hash);
+      const target = getAnchorTarget(hash);
       if (!target) return;
 
       event.preventDefault();
@@ -69,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   if (window.location.hash) {
-    const initialTarget = document.querySelector(window.location.hash);
+    const initialTarget = getAnchorTarget(window.location.hash);
     if (initialTarget) {
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
@@ -80,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   window.addEventListener("hashchange", () => {
-    const target = document.querySelector(window.location.hash);
+    const target = getAnchorTarget(window.location.hash);
     if (target) {
       scrollToAnchorTarget(target, "auto");
     }

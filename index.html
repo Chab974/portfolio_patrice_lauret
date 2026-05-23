@@ -3,6 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-src 'none'; upgrade-insecure-requests"
+  />
+  <meta name="referrer" content="no-referrer" />
   <title>Patrice Lauret · Portfolio</title>
   <meta
     name="description"
@@ -38,11 +43,36 @@
     </div>
 
     <nav class="nav-links" aria-label="Navigation principale">
-      <a href="#apropos" data-short="ÀP" aria-label="À propos">À propos</a>
-      <a href="#expertises" data-short="Ex" aria-label="Expertises">Expertises</a>
-      <a href="#stack" data-short="St" aria-label="Stack">Stack</a>
-      <a href="#travaux" data-short="Tr" aria-label="Travaux">Travaux</a>
-      <a href="#philosophie" data-short="Ph" aria-label="Philosophie">Philosophie</a>
+      <a href="#apropos" aria-label="À propos">
+        <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" />
+          <path d="M4.5 21a7.5 7.5 0 0 1 15 0" />
+        </svg>
+        <span class="nav-label">À propos</span>
+      </a>
+      <a href="#expertises" aria-label="Expertises">
+        <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 3l1.7 5.1L19 10l-5.3 1.9L12 17l-1.7-5.1L5 10l5.3-1.9L12 3Z" />
+          <path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8L19 15Z" />
+        </svg>
+        <span class="nav-label">Expertises</span>
+      </a>
+      <a href="#stack" aria-label="Stack">
+        <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 3 3 8l9 5 9-5-9-5Z" />
+          <path d="m3 13 9 5 9-5" />
+          <path d="m3 18 9 5 9-5" />
+        </svg>
+        <span class="nav-label">Stack</span>
+      </a>
+      <a href="#philosophie" aria-label="Philosophie">
+        <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 3a9 9 0 1 0 9 9" />
+          <path d="M12 7v5l3 2" />
+          <path d="M18 3v4h4" />
+        </svg>
+        <span class="nav-label">Philosophie</span>
+      </a>
     </nav>
   </header>
 
@@ -72,7 +102,7 @@
               </p>
 
               <div class="cta-row">
-                <a class="btn btn-primary" href="#travaux">Voir les axes de travail</a>
+                <a class="btn btn-primary" href="#expertises">Voir les axes de travail</a>
                 <a class="btn" href="#philosophie">Lire la philosophie</a>
               </div>
             </div>
@@ -118,7 +148,6 @@
                 </p>
                 <p>
                   J'interviens également dans l'accompagnement et la mise en place de plan de sécurité (PCA/PRA), afin d'assurer la <strong>continuité</strong> et la <strong>reprise</strong> d'activité lors d'incidents majeurs.
-                  </p>
                 </p>
                 <p>
                   J’ai une appétence forte pour les environnements où il faut concilier
@@ -377,60 +406,6 @@
         <article class="interest-item"><strong>Sécurité des usages</strong><span>Garde-fous, vigilance, lisibilité des risques et des limites.</span></article>
         <article class="interest-item"><strong>Secteur public</strong><span>Transformation numérique utile, pédagogie et adoption.</span></article>
         <article class="interest-item"><strong>Méthodes d’analyse</strong><span>Structurer la pensée, clarifier les besoins, rendre l’action plus nette.</span></article>
-      </div>
-    </section>
-
-    <section id="travaux" class="wrap reveal">
-      <div class="section-head">
-        <span class="label">Ce que l’on trouvera ici</span>
-        <h2>Un portfolio évolutif, pas une vitrine figée</h2>
-        <p>
-          Ce dépôt GitHub regroupe progressivement des prototypes, des pages de démonstration,
-          des supports pédagogiques, des expérimentations IA, des structures de contenu et des modèles réutilisables.
-        </p>
-      </div>
-
-      <div class="projects-grid">
-        <article class="project-card tilt">
-          <span class="project-type">Prototype</span>
-          <h3>Démonstrateurs et pages d’interface</h3>
-          <p>Pages HTML, interfaces de présentation, vitrines éditoriales, démonstrateurs d’usage et explorations de rendu.</p>
-          <div class="project-footer">
-            <span class="tag">HTML</span>
-            <span class="tag">CSS</span>
-            <span class="tag">JavaScript</span>
-          </div>
-        </article>
-
-        <article class="project-card tilt">
-          <span class="project-type">Pédagogie</span>
-          <h3>Supports de formation et contenus structurés</h3>
-          <p>Guides, supports de formation, documents de cadrage, présentations et contenus conçus pour clarifier des sujets complexes.</p>
-          <div class="project-footer">
-            <span class="tag">IA</span>
-            <span class="tag">Prompting</span>
-            <span class="tag">Vulgarisation</span>
-          </div>
-        </article>
-
-        <article class="project-card tilt">
-          <span class="project-type">Système</span>
-          <h3>Structures de connaissances et workflows</h3>
-          <p>Organisation documentaire, modèles réutilisables, méthodes d’analyse et systèmes conçus pour durer au-delà de l’effet de nouveauté.</p>
-          <div class="project-footer">
-            <span class="tag">Notion</span>
-            <span class="tag">KM</span>
-            <span class="tag">Méthodes</span>
-          </div>
-        </article>
-      </div>
-
-      <div class="footer-card">
-        <p>
-          Certains travaux publics sont volontairement simplifiés ou anonymisés lorsque les contextes d’origine
-          sont sensibles, institutionnels ou internes. C’est moins spectaculaire, mais plus sérieux. Rare luxe.
-        </p>
-        <a class="btn btn-primary" href="#top">Revenir en haut</a>
       </div>
     </section>
 
