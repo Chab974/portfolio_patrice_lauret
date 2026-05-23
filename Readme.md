@@ -164,6 +164,28 @@ Certains travaux publics sont volontairement simplifiés ou anonymisés lorsque 
 
 ---
 
+## Structure technique du portfolio
+
+Le site fonctionne en statique (GitHub Pages) avec une séparation claire :
+
+- `index.html` : structure et contenu
+- `assets/css/style.css` : styles de base, composants, animations et responsive
+- `assets/js/main.js` : interactions globales (navigation, curseur lumineux)
+- `assets/js/animations.js` : apparition progressive des blocs (`reveal`)
+- `assets/js/reflections.js` : effet d’inclinaison (`tilt`)
+
+### Responsive CSS
+
+Le responsive est volontairement conservé dans **un seul fichier** CSS (`style.css`), avec les media queries en fin de fichier :
+
+- `@media (max-width: 1024px)` : tablette
+- `@media (max-width: 768px)` : mobile
+- `@media (max-width: 420px)` : petits écrans
+
+Cela évite la duplication, les chargements CSS conditionnels inutiles et toute détection appareil en JavaScript.
+
+---
+
 ## Philosophie
 
 Je crois aux outils qui rendent les idées plus nettes, les décisions plus solides et les usages plus sereins.

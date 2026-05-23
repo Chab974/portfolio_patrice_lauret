@@ -1143,10 +1143,96 @@ section {
   padding: 22px;
 }
 
-@media (max-width: 560px) {
+@media (max-width: 1024px) {
+  .intro-grid,
+  .about-grid,
+  .philosophy-grid,
+  .stack-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-top {
+    grid-template-columns: 1fr;
+  }
+
+  .projects-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .interest-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
   h1,
   .section-head h2 {
     white-space: normal;
     text-wrap: balance;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-shell {
+    padding: 12px 14px;
+  }
+
+  .nav-links {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 8px;
+  }
+
+  .nav-links a {
+    padding: 8px 12px;
+    font-size: 0.88rem;
+  }
+
+  .hero-meta,
+  .panel-grid,
+  .skills-grid,
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .interest-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hero-card,
+  .intro-about,
+  .panel,
+  .profile-panel,
+  .philosophy-card {
+    padding: 22px;
+  }
+
+  section {
+    padding-top: 46px;
+  }
+}
+
+@media (max-width: 420px) {
+  .wrap {
+    width: min(100% - 20px, var(--max));
+  }
+
+  .brand-text span {
+    display: none;
+  }
+
+  h1 {
+    font-size: clamp(2.1rem, 10vw, 3rem);
+  }
+
+  .hero-card,
+  .intro-about,
+  .panel,
+  .profile-panel,
+  .philosophy-card,
+  .footer-card {
+    padding: 18px;
+  }
+
+  .interest-grid {
+    grid-template-columns: 1fr;
   }
 }
