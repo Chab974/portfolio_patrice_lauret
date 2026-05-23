@@ -3,8 +3,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const prefersReducedMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)"
   ).matches;
+  const coarsePointer = window.matchMedia("(hover: none), (pointer: coarse)").matches;
 
-  if (prefersReducedMotion || !tiltItems.length) return;
+  if (prefersReducedMotion || coarsePointer || !tiltItems.length) return;
 
   tiltItems.forEach((card) => {
     card.addEventListener("pointermove", (event) => {

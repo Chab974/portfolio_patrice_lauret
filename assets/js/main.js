@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const navLinks = document.querySelectorAll(".nav-links a");
   const hashLinks = document.querySelectorAll('a[href^="#"]');
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const coarsePointer = window.matchMedia("(hover: none), (pointer: coarse)");
   const sections = [...navLinks]
     .map((link) => document.querySelector(link.getAttribute("href")))
     .filter(Boolean);
@@ -16,7 +17,8 @@ document.addEventListener("DOMContentLoaded", () => {
     root.style.setProperty("--nav-h", `${navHeight}px`);
   };
 
-  const getScrollBehavior = () => (prefersReducedMotion.matches ? "auto" : "smooth");
+  const getScrollBehavior = () =>
+    prefersReducedMotion.matches || coarsePointer.matches ? "auto" : "smooth";
 
   const getAnchorOffset = () => {
     const navHeight = navShell ? navShell.getBoundingClientRect().height : 0;
@@ -34,21 +36,23 @@ document.addEventListener("DOMContentLoaded", () => {
   syncNavHeight();
   window.addEventListener("resize", syncNavHeight, { passive: true });
 
-  window.addEventListener(
-    "pointermove",
-    (event) => {
-      const x = (event.clientX / window.innerWidth) * 100;
-      const y = (event.clientY / window.innerHeight) * 100;
+  if (!coarsePointer.matches && !prefersReducedMotion.matches) {
+    window.addEventListener(
+      "pointermove",
+      (event) => {
+        const x = (event.clientX / window.innerWidth) * 100;
+        const y = (event.clientY / window.innerHeight) * 100;
 
-      root.style.setProperty("--mx", `${x}%`);
-      root.style.setProperty("--my", `${y}%`);
+        root.style.setProperty("--mx", `${x}%`);
+        root.style.setProperty("--my", `${y}%`);
 
-      if (cursorLight) {
-        cursorLight.style.opacity = "1";
-      }
-    },
-    { passive: true }
-  );
+        if (cursorLight) {
+          cursorLight.style.opacity = "1";
+        }
+      },
+      { passive: true }
+    );
+  }
 
   hashLinks.forEach((link) => {
     link.addEventListener("click", (event) => {
