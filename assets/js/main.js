@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const root = document.documentElement;
   const cursorLight = document.querySelector(".cursor-light");
   const navShell = document.querySelector(".nav-shell");
-  const navLinks = document.querySelectorAll(".nav-links a");
+  const navLinks = document.querySelectorAll(".nav-links a:not(.nav-top-link)");
   const hashLinks = document.querySelectorAll('a[href^="#"]');
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const coarsePointer = window.matchMedia("(hover: none), (pointer: coarse)");
