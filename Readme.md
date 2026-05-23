@@ -1,9 +1,10 @@
 # Patrice Lauret
 
-**Consultant en informatique · Formateur IA · Architecte de systèmes de connaissance · Passionné par Notion, le prompting et la transformation numérique utile**
+**Consultant en informatique · Formateur IA · Concepteur de systèmes de connaissance · Passionné par Notion, le prompting et la transformation numérique utile**
 
-Je conçois des dispositifs numériques clairs, robustes et actionnables.  
-Mon terrain de jeu : **l’intelligence artificielle, la structuration de l’information, la pédagogie, Notion, les interfaces utiles et les méthodes de travail qui réduisent vraiment la friction**.
+Je conçois des dispositifs numériques clairs, robustes et utiles.  
+Mon travail se situe à l’intersection de **l’intelligence artificielle, Notion, la structuration de l’information, la pédagogie et les interfaces simples**.  
+J’aide les organisations, associations et équipes à transformer des idées dispersées en systèmes compréhensibles, documentés et réellement utilisables.
 
 ---
 
