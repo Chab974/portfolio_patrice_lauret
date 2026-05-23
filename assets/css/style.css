@@ -1121,11 +1121,16 @@ section {
   gap: 18px;
 }
 
+.philosophy-card-quote {
+  grid-template-rows: 1fr auto;
+}
+
 .quote {
   font-size: clamp(1.3rem, 2.6vw, 2rem);
   line-height: 1.35;
   letter-spacing: -0.04em;
-  max-width: 20ch;
+  max-width: 29ch;
+  text-wrap: balance;
 }
 
 .quote strong {
