@@ -17,6 +17,8 @@
   --radius-sm: 18px;
   --max: 1220px;
   --nav-h: 78px;
+  --mobile-nav-rail-w: 56px;
+  --mobile-nav-rail-gap: 10px;
   --grid: rgba(255, 255, 255, 0.05);
   --card-glow:
     radial-gradient(circle at top left, rgba(255, 255, 255, 0.22), transparent 30%),
@@ -39,6 +41,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-h) + 16px);
 }
 
 body {
@@ -297,6 +300,11 @@ h1 {
   background: rgba(255, 255, 255, 0.08);
   border-color: rgba(255, 255, 255, 0.12);
   transform: translateY(-1px);
+}
+
+.nav-links a:focus-visible {
+  outline: 2px solid rgba(143, 227, 207, 0.65);
+  outline-offset: 2px;
 }
 
 main {
@@ -1171,19 +1179,86 @@ section {
 }
 
 @media (max-width: 768px) {
+  :root {
+    --mobile-nav-rail-w: 56px;
+    --mobile-nav-rail-gap: 10px;
+  }
+
+  body {
+    padding-right: calc(var(--mobile-nav-rail-w) + var(--mobile-nav-rail-gap) + env(safe-area-inset-right));
+  }
+
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 30;
+    pointer-events: none;
+  }
+
   .nav-shell {
+    width: fit-content;
+    min-height: auto;
     padding: 12px 14px;
+    margin-left: 10px;
+    margin-right: calc(var(--mobile-nav-rail-w) + var(--mobile-nav-rail-gap) + 14px);
+    pointer-events: auto;
   }
 
   .nav-links {
-    width: 100%;
-    justify-content: flex-start;
+    width: var(--mobile-nav-rail-w);
+    position: fixed;
+    top: 50%;
+    right: max(8px, env(safe-area-inset-right));
+    transform: translateY(-50%);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 8px;
+    z-index: 35;
+    pointer-events: auto;
   }
 
   .nav-links a {
-    padding: 8px 12px;
-    font-size: 0.88rem;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    border-radius: 999px;
+    font-size: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-color: rgba(255, 255, 255, 0.14);
+    background: rgba(10, 17, 31, 0.72);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+    transform: none;
+  }
+
+  .nav-links a::after {
+    content: attr(data-short);
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--muted);
+  }
+
+  .nav-links a.active::after,
+  .nav-links a:hover::after {
+    color: var(--text);
+  }
+
+  .nav-links a:hover,
+  .nav-links a.active {
+    transform: none;
+  }
+
+  .brand-text span {
+    display: none;
+  }
+
+  main {
+    padding-top: calc(var(--nav-h) + 10px);
   }
 
   .hero-meta,
@@ -1207,6 +1282,7 @@ section {
 
   section {
     padding-top: 46px;
+    scroll-margin-top: calc(var(--nav-h) + 16px);
   }
 }
 
