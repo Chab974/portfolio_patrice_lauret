@@ -4,11 +4,43 @@ document.addEventListener("DOMContentLoaded", () => {
   const navShell = document.querySelector(".nav-shell");
   const navLinks = document.querySelectorAll(".nav-links a:not(.nav-top-link)");
   const hashLinks = document.querySelectorAll('a[href^="#"]');
+  const contactButtons = document.querySelectorAll("[data-contact-reveal]");
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const coarsePointer = window.matchMedia("(hover: none), (pointer: coarse)");
   const sections = [...navLinks]
     .map((link) => document.querySelector(link.getAttribute("href")))
     .filter(Boolean);
+
+  const contactDetails = {
+    email: {
+      characterCodes: [108, 112, 57, 55, 52, 50, 52, 64, 103, 109, 97, 105, 108, 46, 99, 111, 109],
+      hrefPrefix: "mailto:",
+      format: (value) => value,
+    },
+    phone: {
+      characterCodes: [43, 51, 51, 54, 56, 54, 56, 51, 55, 55, 52, 53],
+      hrefPrefix: "tel:",
+      format: (value) =>
+        value
+          .replace(/^\+33/, "0")
+          .replace(/(\d{2})(?=\d)/g, "$1 ")
+          .trim(),
+    },
+  };
+
+  const revealContact = (button) => {
+    const contact = contactDetails[button.dataset.contactReveal];
+    if (!contact) return;
+
+    const value = String.fromCharCode(...contact.characterCodes);
+    const link = document.createElement("a");
+
+    link.className = button.className;
+    link.href = `${contact.hrefPrefix}${value}`;
+    link.textContent = contact.format(value);
+    button.replaceWith(link);
+    link.focus({ preventScroll: true });
+  };
 
   const getAnchorTarget = (hash) => {
     if (!hash || hash === "#" || !hash.startsWith("#")) return null;
@@ -55,6 +87,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   syncNavHeight();
   window.addEventListener("resize", syncNavHeight, { passive: true });
+
+  contactButtons.forEach((button) => {
+    button.addEventListener("click", () => revealContact(button), { once: true });
+  });
 
   if (!coarsePointer.matches && !prefersReducedMotion.matches) {
     window.addEventListener(
