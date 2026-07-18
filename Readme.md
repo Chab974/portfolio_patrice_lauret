@@ -175,6 +175,33 @@ Le site fonctionne en statique (GitHub Pages) avec une séparation claire :
 - `assets/js/animations.js` : apparition progressive des blocs (`reveal`)
 - `assets/js/reflections.js` : effet d’inclinaison (`tilt`)
 
+### Protection antispam des coordonnées
+
+L’adresse e-mail et le numéro de téléphone ne doivent jamais être écrits en clair dans `index.html`, le README, une issue ou une autre page publique du dépôt.
+
+Le portfolio limite la collecte automatisée de ces informations de la manière suivante :
+
+- `index.html` affiche uniquement les boutons « Afficher l’e-mail » et « Afficher le téléphone » ;
+- les coordonnées sont stockées sous forme de codes de caractères dans `assets/js/main.js` ;
+- après un clic, JavaScript reconstitue la valeur et remplace le bouton par un lien `mailto:` ou `tel:` utilisable ;
+- aucun service externe, cookie ou formulaire de collecte n’est nécessaire.
+
+Pour modifier une coordonnée, convertir la nouvelle valeur en codes de caractères dans la console du navigateur ou avec Node.js :
+
+```js
+Array.from("adresse-ou-numero", (character) => character.charCodeAt(0));
+```
+
+Reporter ensuite le tableau obtenu dans la propriété `characterCodes` correspondante de `assets/js/main.js`, puis vérifier que l’adresse ou le numéro n’apparaît pas en clair dans les fichiers publics :
+
+```bash
+rg -n "fragment-de-la-coordonnee" index.html assets Readme.md
+```
+
+Cette technique bloque surtout les robots qui analysent directement le HTML. Elle ne constitue pas un chiffrement : un robot capable d’exécuter JavaScript peut toujours reconstituer les coordonnées. En cas de spam important, utiliser une adresse alias dédiée ou un formulaire côté serveur protégé par un honeypot, une limitation de débit et un CAPTCHA.
+
+Remplacer `@` par `[at]`, utiliser des entités HTML ou ajouter les coordonnées dans `robots.txt` ne fournit pas une protection suffisante.
+
 ### Responsive CSS
 
 Le responsive est volontairement conservé dans **un seul fichier** CSS (`style.css`), avec les media queries en fin de fichier :
